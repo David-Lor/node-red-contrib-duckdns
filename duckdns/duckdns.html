@@ -1,0 +1,109 @@
+<script type="text/javascript">
+    RED.nodes.registerType("duckdns", {
+        category: "network",
+        color: "#fff000",
+        defaults: {
+            name: {
+                value: ""
+            },
+            domains: {
+                value: ""
+            },
+            ip: {
+                value: ""
+            },
+            ipv6: {
+                value: ""
+            },
+            clear: {
+                value: false
+            },
+            verbose: {
+                value: false
+            }
+        },
+        credentials: {
+            token: {
+                type: "text"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "white-globe.svg",
+        label: function() {
+            const domains = this.domains ? ` (${this.domains})` : "";
+            return this.name || "DuckDNS" + domains;
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="duckdns">
+    <div class="form-row">
+        <label for="node-input-token"><i class="fa fa-tag"></i> Token</label>
+        <input type="text" id="node-input-token">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-domains"><i class="fa fa-tag"></i> Domains (comma separated)</label>
+        <input type="text" id="node-input-domains" placeholder="foo,bar">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-ip"><i class="fa fa-tag"></i> IP address</label>
+        <input type="text" id="node-input-ip" placeholder="0.0.0.0">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-ipv6"><i class="fa fa-tag"></i> IPv6 address</label>
+        <input type="text" id="node-input-ipb6" placeholder="2001:0db8:85a3:0000:0000:8a2e:0370:7334">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-clear"><i class="fa fa-tag"></i> Clear addresses</label>
+        <input type="checkbox" id="node-input-clear">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-verbose"><i class="fa fa-tag"></i> Verbose output</label>
+        <input type="checkbox" id="node-input-verbose">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="duckdns">
+    <p>Update the IP address of a DuckDNS Dynamic DNS domain</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>domains <span class="property-type">string</span></dt>
+        <dd>If not configured in the node, this property sets the domains to update. Multiple domains can be updated at the same time, specifying them comma-separated. The domains do not need to have the ".duckdns.org" part.</dd>
+        
+        <dt>token <span class="property-type">string</span></dt>
+        <dd>If not configured in the node, this property sets the DuckDNS user token.</dd>
+        
+        <dt>ip <span class="property-type">string</span></dt>
+        <dd>If not configured in the node, this optional property sets the destination IP for the domain/s. Can be a IPv4 or IPv6. When this property is not set, nor configured on the node, DuckDNS will autodetect the IP (from where the request was performed).</dd>
+
+        <dt>ipv6 <span class="property-type">string</span></dt>
+        <dd>If not configured in the node, this optional property sets the destination IPv6 for the domain/s. If set, the IP autodetection is disabled.</dd>
+
+        <dt>clear <span class="property-type">boolean</span></dt>
+        <dd>If not configured in the node, this optional property can be set to true to clear the IP address/es already assigned to the domain/s.</dd>
+
+        <dt>verbose <span class="property-type">boolean</span></dt>
+        <dd>If not configured in the node, this optional property can be set to true to make DuckDNS return a verbose response, which is returned as the payload output of the node.</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string</span></dt>
+        <dd>the DuckDNS API response (will always be "OK", and may contain additional information if verbose=true)</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>The node performs a HTTP request to the <a href="https://www.duckdns.org/spec.jsp">DuckDNS API</a>.</p>
+</script>

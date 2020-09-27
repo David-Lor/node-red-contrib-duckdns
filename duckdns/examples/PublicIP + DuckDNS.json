@@ -1,0 +1,102 @@
+[
+    {
+        "id": "114192a1.1b86a5",
+        "type": "tab",
+        "label": "Public IP + DuckDNS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "faa8861a.657508",
+        "type": "duckdns",
+        "z": "114192a1.1b86a5",
+        "name": "",
+        "domains": "foo,bar",
+        "ip": "",
+        "clear": false,
+        "verbose": true,
+        "x": 630,
+        "y": 40,
+        "wires": [
+            [
+                "a7f7f34a.5ec178"
+            ]
+        ]
+    },
+    {
+        "id": "95acd764.9c4768",
+        "type": "inject",
+        "z": "114192a1.1b86a5",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "47f9022d.d98554"
+            ]
+        ]
+    },
+    {
+        "id": "a7f7f34a.5ec178",
+        "type": "debug",
+        "z": "114192a1.1b86a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "47f9022d.d98554",
+        "type": "public-ip-address",
+        "z": "114192a1.1b86a5",
+        "name": "",
+        "x": 230,
+        "y": 40,
+        "wires": [
+            [
+                "bfa1da0a.9bf868"
+            ]
+        ]
+    },
+    {
+        "id": "bfa1da0a.9bf868",
+        "type": "change",
+        "z": "114192a1.1b86a5",
+        "name": "msg.payload = msg.ip",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ip",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 40,
+        "wires": [
+            [
+                "faa8861a.657508"
+            ]
+        ]
+    }
+]

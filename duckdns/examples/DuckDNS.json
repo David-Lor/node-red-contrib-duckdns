@@ -1,0 +1,113 @@
+[
+    {
+        "id": "edcfefb0.71759",
+        "type": "tab",
+        "label": "DuckDNS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "51688a67.c6817c",
+        "type": "duckdns",
+        "z": "edcfefb0.71759",
+        "name": "",
+        "domains": "foo, bar",
+        "ip": "",
+        "clear": false,
+        "verbose": false,
+        "x": 410,
+        "y": 40,
+        "wires": [
+            [
+                "79a9c256.c2c124"
+            ]
+        ]
+    },
+    {
+        "id": "2dfa2242.eaa6ae",
+        "type": "inject",
+        "z": "edcfefb0.71759",
+        "name": "Trigger without params",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "51688a67.c6817c"
+            ]
+        ]
+    },
+    {
+        "id": "79a9c256.c2c124",
+        "type": "debug",
+        "z": "edcfefb0.71759",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a1b61a41.10a6f",
+        "type": "inject",
+        "z": "edcfefb0.71759",
+        "name": "Trigger with params",
+        "props": [
+            {
+                "p": "domains",
+                "v": "foo, bar",
+                "vt": "str"
+            },
+            {
+                "p": "token",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "clear",
+                "v": "false",
+                "vt": "bool"
+            },
+            {
+                "p": "verbose",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "ip",
+                "v": "1.1.1.1",
+                "vt": "str"
+            },
+            {
+                "p": "ipv6",
+                "v": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "51688a67.c6817c"
+            ]
+        ]
+    }
+]

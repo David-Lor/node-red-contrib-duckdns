@@ -1,0 +1,152 @@
+[
+    {
+        "id": "7ec18b3d.c98ce4",
+        "type": "tab",
+        "label": "Public IP + DuckDNS (on change)",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2a54213b.de83a6",
+        "type": "duckdns",
+        "z": "7ec18b3d.c98ce4",
+        "name": "",
+        "domains": "foo, bar",
+        "ip": "",
+        "clear": false,
+        "verbose": true,
+        "x": 850,
+        "y": 40,
+        "wires": [
+            [
+                "9da14455.92ec28"
+            ]
+        ]
+    },
+    {
+        "id": "14c5d74f.ce6589",
+        "type": "inject",
+        "z": "7ec18b3d.c98ce4",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "23aefd7b.751d92"
+            ]
+        ]
+    },
+    {
+        "id": "9da14455.92ec28",
+        "type": "debug",
+        "z": "7ec18b3d.c98ce4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "23aefd7b.751d92",
+        "type": "public-ip-address",
+        "z": "7ec18b3d.c98ce4",
+        "name": "",
+        "x": 250,
+        "y": 40,
+        "wires": [
+            [
+                "da262a91.0c7d58",
+                "69391de2.90da5c"
+            ]
+        ]
+    },
+    {
+        "id": "8b77ab83.3dc15",
+        "type": "change",
+        "z": "7ec18b3d.c98ce4",
+        "name": "msg.payload = msg.ip",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ip",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 40,
+        "wires": [
+            [
+                "2a54213b.de83a6"
+            ]
+        ]
+    },
+    {
+        "id": "da262a91.0c7d58",
+        "type": "change",
+        "z": "7ec18b3d.c98ce4",
+        "name": "flow.public_ip = msg.payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "public_ip",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69391de2.90da5c",
+        "type": "switch",
+        "z": "7ec18b3d.c98ce4",
+        "name": "ip changed?",
+        "property": "public_ip",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "payload",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 40,
+        "wires": [
+            [
+                "8b77ab83.3dc15"
+            ]
+        ]
+    }
+]
