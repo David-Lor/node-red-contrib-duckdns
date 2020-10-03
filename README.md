@@ -35,6 +35,9 @@ To be more efficient, we could use a [GET Public IP](https://flows.nodered.org/n
 
 ## Changelog
 
+- 0.0.2
+    - fix "PublicIP + DuckDNS (on change)" example (reverse the msg.payload -> msg.ip variable assignment node)
+    - update description in package.json to reference that this is a Node-RED Node
 - 0.0.1
     - initial release
 

@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-duckdns",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Node-RED Node to update Dynamic DNS domains from DuckDNS",
     "author": "David-Lor",
     "license": "ISC",
