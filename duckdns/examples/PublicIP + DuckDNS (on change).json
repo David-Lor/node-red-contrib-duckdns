@@ -1,32 +1,32 @@
 [
     {
-        "id": "7ec18b3d.c98ce4",
+        "id": "fa4e3f9b.1f7a",
         "type": "tab",
         "label": "Public IP + DuckDNS (on change)",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
-        "id": "2a54213b.de83a6",
+        "id": "9c7f22fb.3b7df",
         "type": "duckdns",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "",
         "domains": "foo, bar",
         "ip": "",
         "clear": false,
         "verbose": true,
-        "x": 850,
+        "x": 880,
         "y": 40,
         "wires": [
             [
-                "9da14455.92ec28"
+                "71158438.7663b4"
             ]
         ]
     },
     {
-        "id": "14c5d74f.ce6589",
+        "id": "8ef609d1.7e294",
         "type": "inject",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "Trigger",
         "props": [],
         "repeat": "60",
@@ -38,14 +38,14 @@
         "y": 40,
         "wires": [
             [
-                "23aefd7b.751d92"
+                "4db27577.8e6be4"
             ]
         ]
     },
     {
-        "id": "9da14455.92ec28",
+        "id": "71158438.7663b4",
         "type": "debug",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -54,35 +54,35 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1030,
+        "x": 1070,
         "y": 40,
         "wires": []
     },
     {
-        "id": "23aefd7b.751d92",
+        "id": "4db27577.8e6be4",
         "type": "public-ip-address",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "",
         "x": 250,
         "y": 40,
         "wires": [
             [
-                "da262a91.0c7d58",
-                "69391de2.90da5c"
+                "3606aef1.8dd81a",
+                "c728a089.343df"
             ]
         ]
     },
     {
-        "id": "8b77ab83.3dc15",
+        "id": "bda0bca5.b47a08",
         "type": "change",
-        "z": "7ec18b3d.c98ce4",
-        "name": "msg.payload = msg.ip",
+        "z": "fa4e3f9b.1f7a",
+        "name": "msg.payload -> msg.ip",
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "ip",
                 "pt": "msg",
-                "to": "ip",
+                "to": "payload",
                 "tot": "msg"
             }
         ],
@@ -91,18 +91,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
+        "x": 650,
         "y": 40,
         "wires": [
             [
-                "2a54213b.de83a6"
+                "9c7f22fb.3b7df"
             ]
         ]
     },
     {
-        "id": "da262a91.0c7d58",
+        "id": "3606aef1.8dd81a",
         "type": "change",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "flow.public_ip = msg.payload",
         "rules": [
             {
@@ -125,9 +125,9 @@
         ]
     },
     {
-        "id": "69391de2.90da5c",
+        "id": "c728a089.343df",
         "type": "switch",
-        "z": "7ec18b3d.c98ce4",
+        "z": "fa4e3f9b.1f7a",
         "name": "ip changed?",
         "property": "public_ip",
         "propertyType": "flow",
@@ -145,7 +145,7 @@
         "y": 40,
         "wires": [
             [
-                "8b77ab83.3dc15"
+                "bda0bca5.b47a08"
             ]
         ]
     }
